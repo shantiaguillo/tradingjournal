@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Trading</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Registro Trading</h1>
+        <button id="darkModeBtn">Dark Mode</button>
 
         <form id="tradeForm">
+            <label>Símbolo:
+                <input type="text" id="simbolo" placeholder="Ej: EURUSD" required>
+            </label>
             <label>Fecha:
                 <input type="date" id="fecha" required>
             </label>
@@ -52,13 +56,16 @@
                     <option value="BE">BE</option>
                 </select>
             </label>
-            <button type="submit">Agregar Trade</button>
+            <button type="submit" class="full-width-btn">Agregar Trade</button>
         </form>
+
+        <button id="downloadPdfBtn" class="full-width-btn">Descargar Registro PDF</button>
 
         <h2>Historial de Trades</h2>
         <table id="tradeTable">
             <thead>
                 <tr>
+                    <th>Símbolo</th>
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Sesión</th>
@@ -76,6 +83,7 @@
         </table>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
