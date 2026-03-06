@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Trading Journal</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<text y='.9em' font-size='90'>💹</text>
+</svg>">
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
@@ -14,7 +22,9 @@
 
 <h1>Trading Journal</h1>
 
+<div class="theme-btn">
 <button id="darkModeBtn"></button>
+</div>
 
 <form id="tradeForm">
 
@@ -31,7 +41,8 @@
 </label>
 
 <label>Sesión
-<select id="sesion">
+<select id="sesion" required>
+<option value="">Seleccionar</option>
 <option>NY</option>
 <option>Londres</option>
 <option>Asia</option>
@@ -39,30 +50,32 @@
 </label>
 
 <label>Dirección
-<select id="direccion">
+<select id="direccion" required>
+<option value="">Seleccionar</option>
 <option>Long</option>
 <option>Short</option>
 </select>
 </label>
 
 <label>Entry
-<input type="number" id="entry" step="0.0001">
+<input type="number" id="entry" step="0.0001" required>
 </label>
 
-<label>SL
-<input type="number" id="sl" step="0.0001">
+<label>Stop Loss
+<input type="number" id="sl" step="0.0001" required>
 </label>
 
-<label>TP
-<input type="number" id="tp" step="0.0001">
+<label>Take Profit
+<input type="number" id="tp" step="0.0001" required>
 </label>
 
 <label>Risk %
-<input type="number" id="risk">
+<input type="number" id="risk" required>
 </label>
 
 <label>Resultado
-<select id="resultado">
+<select id="resultado" required>
+<option value="">Seleccionar</option>
 <option>Win</option>
 <option>Loss</option>
 <option>BE</option>
@@ -80,6 +93,7 @@
 <table id="tradeTable">
 
 <thead>
+
 <tr>
 <th>Símbolo</th>
 <th>Fecha</th>
@@ -87,11 +101,13 @@
 <th>Sesión</th>
 <th>Dirección</th>
 <th>Entry</th>
-<th>SL</th>
-<th>TP</th>
+<th>Stop Loss</th>
+<th>Take Profit</th>
 <th>Risk</th>
 <th>Resultado</th>
+<th>Acciones</th>
 </tr>
+
 </thead>
 
 <tbody></tbody>
