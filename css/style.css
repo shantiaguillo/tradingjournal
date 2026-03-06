@@ -1,6 +1,6 @@
 body{
 font-family:Arial;
-background:#eefefe;
+background:white;
 padding:30px;
 transition:0.3s;
 }
@@ -16,6 +16,11 @@ box-shadow:0 0 10px rgba(0,0,0,0.15);
 
 h1,h2{
 text-align:center;
+}
+
+.theme-btn{
+text-align:center;
+margin-bottom:25px;
 }
 
 label{
@@ -39,15 +44,16 @@ border:1px solid #1F7F82;
 }
 
 .fullbtn{
-grid-column:1/-1;
+width:100%;
 padding:14px;
 background:#1F7F82;
 border:none;
 border-radius:8px;
-font-size:18px;
+font-size:16px;
 font-weight:bold;
 cursor:pointer;
 color:white;
+margin-top:10px;
 }
 
 .fullbtn:hover{
@@ -72,18 +78,42 @@ text-align:center;
 border-bottom:1px solid #ddd;
 }
 
-/* RESULTADOS */
+/* RESULTADO COLORES SOLO TEXTO */
 
 .win{
-background:#c6ffd0;
+color:#2ecc71;
+font-weight:bold;
 }
 
 .loss{
-background:#ffd6d6;
+color:#e74c3c;
+font-weight:bold;
 }
 
 .be{
-background:#fff3b0;
+color:#f1c40f;
+font-weight:bold;
+}
+
+/* BOTONES ACCION */
+
+.action-btn{
+padding:6px 10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin:2px;
+font-size:13px;
+}
+
+.edit-btn{
+background:#3498db;
+color:white;
+}
+
+.delete-btn{
+background:#e74c3c;
+color:white;
 }
 
 /* DARK MODE */
@@ -97,18 +127,6 @@ color:white;
 background:#1b1b1b;
 }
 
-.dark-mode th{
-background:#1F7F82;
-}
-
-.dark-mode .win{
-background:#0f3d20;
-}
-
-.dark-mode .loss{
-background:#4a1b1b;
-}
-
-.dark-mode .be{
-background:#5c5315;
+.dark-mode td{
+border-color:#333;
 }
