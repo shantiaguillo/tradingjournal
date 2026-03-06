@@ -1,84 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-<meta charset="UTF-8">
-<title>Trading Journal</title>
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Trading</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+    <div class="container">
+        <h1>Registro Trading</h1>
 
-<h1>Registro de Trading</h1>
+        <form id="tradeForm">
+            <label>Fecha:
+                <input type="date" id="fecha" required>
+            </label>
+            <label>Hora:
+                <input type="time" id="hora" required>
+            </label>
+            <label>Sesión:
+                <select id="sesion" required>
+                    <option value="">--Seleccionar--</option>
+                    <option value="NY">NY</option>
+                    <option value="Londres">Londres</option>
+                    <option value="Asia">Asia</option>
+                </select>
+            </label>
+            <label>Dirección:
+                <select id="direccion" required>
+                    <option value="">--Seleccionar--</option>
+                    <option value="Long">Long</option>
+                    <option value="Short">Short</option>
+                </select>
+            </label>
+            <label>Entry:
+                <input type="number" id="entry" step="0.0001" required>
+            </label>
+            <label>SL:
+                <input type="number" id="sl" step="0.0001" required>
+            </label>
+            <label>TP:
+                <input type="number" id="tp" step="0.0001" required>
+            </label>
+            <label>Riesgo (%):
+                <input type="number" id="risk" step="0.1" required>
+            </label>
+            <label>Resultado:
+                <select id="resultado" required>
+                    <option value="">--Seleccionar--</option>
+                    <option value="Win">Win</option>
+                    <option value="Loss">Loss</option>
+                    <option value="BE">BE</option>
+                </select>
+            </label>
+            <button type="submit">Agregar Trade</button>
+        </form>
 
-<form id="tradeForm">
+        <h2>Historial de Trades</h2>
+        <table id="tradeTable">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Sesión</th>
+                    <th>Dirección</th>
+                    <th>Entry</th>
+                    <th>SL</th>
+                    <th>TP</th>
+                    <th>Riesgo</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se agregarán los trades -->
+            </tbody>
+        </table>
+    </div>
 
-<h2>Contexto</h2>
-
-<label>Fecha</label>
-<input type="date" id="date" required>
-
-<label>Hora</label>
-<input type="time" id="time" required>
-
-<label>Sesión</label>
-<select id="session">
-<option>New York</option>
-<option>London</option>
-<option>Asia</option>
-</select>
-
-
-<h2>Trade</h2>
-
-<label>Dirección</label>
-<select id="direction">
-<option>Long</option>
-<option>Short</option>
-</select>
-
-<label>Entry</label>
-<input type="number" id="entry">
-
-<label>Stop Loss</label>
-<input type="number" id="sl">
-
-<label>Take Profit</label>
-<input type="number" id="tp">
-
-<label>Risk %</label>
-<input type="number" id="risk">
-
-
-<h2>Resultado</h2>
-
-<label>Resultado</label>
-<select id="result">
-<option>Win</option>
-<option>Loss</option>
-<option>BE</option>
-</select>
-
-<label>Notas</label>
-<textarea id="notes"></textarea>
-
-<button type="submit">Guardar Registro</button>
-
-</form>
-
-
-<div class="buttons">
-<button id="download">Descargar registros</button>
-</div>
-
-
-<h2>Historial</h2>
-
-<div id="tradeList"></div>
-
-<script src="js/app.js"></script>
-
+    <script src="js/app.js"></script>
 </body>
 </html>
