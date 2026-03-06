@@ -1,61 +1,60 @@
 const form=document.getElementById("tradeForm")
-const table=document.querySelector("#tradeTable tbody")
-const submitBtn=document.getElementById("submitBtn")
+const tableBody=document.querySelector("#tradeTable tbody")
 const darkBtn=document.getElementById("darkModeBtn")
+const pdfBtn=document.getElementById("downloadPdfBtn")
 
 let trades=JSON.parse(localStorage.getItem("trades"))||[]
 let editIndex=null
 
-function save(){
-localStorage.setItem("trades",JSON.stringify(trades))
-}
+function renderTrades(){
 
-function render(){
+tableBody.innerHTML=""
 
-table.innerHTML=""
+trades.forEach((trade,index)=>{
 
-trades.forEach((t,i)=>{
+const row=document.createElement("tr")
 
 let resultClass=""
 
-if(t.resultado==="Win") resultClass="win"
-if(t.resultado==="Loss") resultClass="loss"
-if(t.resultado==="BE") resultClass="be"
+if(trade.resultado==="Win") resultClass="win"
+if(trade.resultado==="Loss") resultClass="loss"
+if(trade.resultado==="BE") resultClass="be"
 
-let row=`
-<tr>
+row.innerHTML=`
 
-<td>${t.simbolo}</td>
-<td>${t.fecha}</td>
-<td>${t.hora}</td>
-<td>${t.sesion}</td>
-<td>${t.direccion}</td>
-<td>${t.entry}</td>
-<td>${t.sl}</td>
-<td>${t.tp}</td>
-<td>${t.risk}</td>
-
-<td class="${resultClass}">${t.resultado}</td>
+<td>${trade.simbolo}</td>
+<td>${trade.fecha}</td>
+<td>${trade.hora}</td>
+<td>${trade.sesion}</td>
+<td>${trade.direccion}</td>
+<td>${trade.entry}</td>
+<td>${trade.sl}</td>
+<td>${trade.tp}</td>
+<td>${trade.risk}%</td>
+<td class="${resultClass}">${trade.resultado}</td>
 
 <td>
-<button class="action-btn" onclick="editTrade(${i})">Editar</button>
-<button class="action-btn" onclick="deleteTrade(${i})">Eliminar</button>
+
+<button class="action-btn edit-btn" onclick="editTrade(${index})">Editar</button>
+<button class="action-btn delete-btn" onclick="deleteTrade(${index})">Eliminar</button>
+
 </td>
 
-</tr>
 `
 
-table.innerHTML+=row
+tableBody.appendChild(row)
 
 })
 
 }
 
-form.addEventListener("submit",(e)=>{
+renderTrades()
+
+form.addEventListener("submit",e=>{
 
 e.preventDefault()
 
-let trade={
+const trade={
 
 simbolo:simbolo.value,
 fecha:fecha.value,
@@ -78,61 +77,93 @@ trades.push(trade)
 
 trades[editIndex]=trade
 editIndex=null
-submitBtn.textContent="Agregar Trade"
 
 }
 
-save()
-render()
+localStorage.setItem("trades",JSON.stringify(trades))
+
+renderTrades()
+
 form.reset()
 
 })
 
-function editTrade(i){
+function deleteTrade(index){
 
-let t=trades[i]
+trades.splice(index,1)
 
-simbolo.value=t.simbolo
-fecha.value=t.fecha
-hora.value=t.hora
-sesion.value=t.sesion
-direccion.value=t.direccion
-entry.value=t.entry
-sl.value=t.sl
-tp.value=t.tp
-risk.value=t.risk
-resultado.value=t.resultado
+localStorage.setItem("trades",JSON.stringify(trades))
 
-editIndex=i
-
-submitBtn.textContent="Actualizar Trade"
+renderTrades()
 
 }
 
-function deleteTrade(i){
+function editTrade(index){
 
-if(confirm("¿Seguro que deseas eliminar este trade?")){
+const trade=trades[index]
 
-trades.splice(i,1)
-save()
-render()
+simbolo.value=trade.simbolo
+fecha.value=trade.fecha
+hora.value=trade.hora
+sesion.value=trade.sesion
+direccion.value=trade.direccion
+entry.value=trade.entry
+sl.value=trade.sl
+tp.value=trade.tp
+risk.value=trade.risk
+resultado.value=trade.resultado
+
+editIndex=index
+
+}
+
+/* DARK MODE */
+
+function applyTheme(){
+
+const theme=localStorage.getItem("theme")
+
+if(theme==="dark"){
+
+document.body.classList.add("dark-mode")
+darkBtn.textContent="☀️ Clear Mode"
+
+}else{
+
+darkBtn.textContent="🌙 Dark Mode"
 
 }
 
 }
 
-document.getElementById("downloadPdfBtn").addEventListener("click",()=>{
+applyTheme()
 
-if(trades.length===0){
-alert("No hay registros para descargar")
-return
+darkBtn.onclick=()=>{
+
+if(document.body.classList.contains("dark-mode")){
+
+document.body.classList.remove("dark-mode")
+localStorage.setItem("theme","light")
+darkBtn.textContent="🌙 Dark Mode"
+
+}else{
+
+document.body.classList.add("dark-mode")
+localStorage.setItem("theme","dark")
+darkBtn.textContent="☀️ Clear Mode"
+
 }
+
+}
+
+/* PDF */
+
+pdfBtn.onclick=()=>{
 
 const {jsPDF}=window.jspdf
+const doc=new jsPDF()
 
-let doc=new jsPDF()
-
-let data=trades.map(t=>[
+const rows=trades.map(t=>[
 t.simbolo,
 t.fecha,
 t.hora,
@@ -141,45 +172,18 @@ t.direccion,
 t.entry,
 t.sl,
 t.tp,
-t.risk,
+t.risk+"%",
 t.resultado
 ])
 
+doc.text("Trading Journal",14,15)
+
 doc.autoTable({
-
-head:[["Símbolo","Fecha","Hora","Sesión","Dirección","Entry","SL","TP","Risk","Resultado"]],
-body:data
-
+head:[['Símbolo','Fecha','Hora','Sesión','Dirección','Entry','SL','TP','Risk','Resultado']],
+body:rows,
+startY:20
 })
 
-doc.save("trading_journal.pdf")
-
-})
-
-if(localStorage.getItem("dark")==="true"){
-document.body.classList.add("dark")
-}
-
-function updateDarkText(){
-
-if(document.body.classList.contains("dark")){
-darkBtn.textContent="☀ Clear Mode"
-}else{
-darkBtn.textContent="🌙 Dark Mode"
-}
+doc.save("trades.pdf")
 
 }
-
-updateDarkText()
-
-darkBtn.addEventListener("click",()=>{
-
-document.body.classList.toggle("dark")
-
-localStorage.setItem("dark",document.body.classList.contains("dark"))
-
-updateDarkText()
-
-})
-
-render()
