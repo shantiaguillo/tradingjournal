@@ -1,222 +1,66 @@
-/* RESET */
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
 }
 
-
-/* BODY */
-
-body{
-
-font-family: Arial, Helvetica, sans-serif;
-background:#f4f6f8;
-max-width:800px;
-margin:auto;
-padding:30px;
-
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-
-/* TITULOS */
-
-h1{
-
-text-align:center;
-margin-bottom:25px;
-
+h1, h2 {
+    text-align: center;
 }
 
-h2{
-
-margin-top:25px;
-margin-bottom:10px;
-color:#333;
-
+form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-
-/* FORMULARIO */
-
-form{
-
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
 }
 
-
-/* INPUTS */
-
-label{
-
-font-size:14px;
-color:#555;
-
+input, select, button {
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-input,
-select,
-textarea{
-
-width:100%;
-padding:10px;
-margin-top:6px;
-margin-bottom:15px;
-
-border:1px solid #ddd;
-border-radius:6px;
-
-font-size:14px;
-
+button {
+    grid-column: span 2;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
 }
 
-
-/* TEXTAREA */
-
-textarea{
-
-min-height:80px;
-resize:vertical;
-
+button:hover {
+    background-color: #45a049;
 }
 
-
-/* BOTONES */
-
-button{
-
-padding:10px 16px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-
-font-size:14px;
-
-transition:0.2s;
-
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-
-/* BOTON GUARDAR */
-
-form button{
-
-background:#2ecc71;
-color:white;
-
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
-form button:hover{
-
-background:#27ae60;
-
-}
-
-
-/* BOTON DESCARGAR */
-
-#download{
-
-background:#3498db;
-color:white;
-margin-top:20px;
-
-}
-
-#download:hover{
-
-background:#2980b9;
-
-}
-
-
-/* HISTORIAL */
-
-#tradeList{
-
-margin-top:25px;
-
-}
-
-
-/* TARJETA TRADE */
-
-.trade{
-
-background:white;
-padding:18px;
-margin-bottom:15px;
-
-border-radius:8px;
-
-box-shadow:0 2px 8px rgba(0,0,0,0.07);
-
-line-height:1.6;
-
-}
-
-
-/* BOTONES TRADE */
-
-.trade button{
-
-margin-right:10px;
-margin-top:10px;
-
-}
-
-
-/* BOTON EDITAR */
-
-.trade button:first-of-type{
-
-background:#f39c12;
-color:white;
-
-}
-
-.trade button:first-of-type:hover{
-
-background:#d68910;
-
-}
-
-
-/* BOTON BORRAR */
-
-.trade button:last-of-type{
-
-background:#e74c3c;
-color:white;
-
-}
-
-.trade button:last-of-type:hover{
-
-background:#c0392b;
-
-}
-
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-body{
-
-padding:15px;
-
-}
-
-form{
-
-padding:20px;
-
-}
-
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
