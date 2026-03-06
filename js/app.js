@@ -4,20 +4,24 @@ const darkBtn=document.getElementById("darkModeBtn")
 const pdfBtn=document.getElementById("downloadPdfBtn")
 
 let trades=JSON.parse(localStorage.getItem("trades"))||[]
+let editIndex=null
 
 function renderTrades(){
 
 tableBody.innerHTML=""
 
-trades.forEach(trade=>{
+trades.forEach((trade,index)=>{
 
 const row=document.createElement("tr")
 
-if(trade.resultado==="Win") row.classList.add("win")
-if(trade.resultado==="Loss") row.classList.add("loss")
-if(trade.resultado==="BE") row.classList.add("be")
+let resultClass=""
+
+if(trade.resultado==="Win") resultClass="win"
+if(trade.resultado==="Loss") resultClass="loss"
+if(trade.resultado==="BE") resultClass="be"
 
 row.innerHTML=`
+
 <td>${trade.simbolo}</td>
 <td>${trade.fecha}</td>
 <td>${trade.hora}</td>
@@ -27,7 +31,15 @@ row.innerHTML=`
 <td>${trade.sl}</td>
 <td>${trade.tp}</td>
 <td>${trade.risk}%</td>
-<td>${trade.resultado}</td>
+<td class="${resultClass}">${trade.resultado}</td>
+
+<td>
+
+<button class="action-btn edit-btn" onclick="editTrade(${index})">Editar</button>
+<button class="action-btn delete-btn" onclick="deleteTrade(${index})">Eliminar</button>
+
+</td>
+
 `
 
 tableBody.appendChild(row)
@@ -57,7 +69,16 @@ resultado:resultado.value
 
 }
 
+if(editIndex===null){
+
 trades.push(trade)
+
+}else{
+
+trades[editIndex]=trade
+editIndex=null
+
+}
 
 localStorage.setItem("trades",JSON.stringify(trades))
 
@@ -66,6 +87,35 @@ renderTrades()
 form.reset()
 
 })
+
+function deleteTrade(index){
+
+trades.splice(index,1)
+
+localStorage.setItem("trades",JSON.stringify(trades))
+
+renderTrades()
+
+}
+
+function editTrade(index){
+
+const trade=trades[index]
+
+simbolo.value=trade.simbolo
+fecha.value=trade.fecha
+hora.value=trade.hora
+sesion.value=trade.sesion
+direccion.value=trade.direccion
+entry.value=trade.entry
+sl.value=trade.sl
+tp.value=trade.tp
+risk.value=trade.risk
+resultado.value=trade.resultado
+
+editIndex=index
+
+}
 
 /* DARK MODE */
 
