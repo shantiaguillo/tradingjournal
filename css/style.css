@@ -1,0 +1,23 @@
+body{
+font-family: Arial;
+background:#111;
+color:white;
+padding:30px;
+}
+
+input,select,textarea{
+display:block;
+margin:10px 0;
+padding:8px;
+}
+
+table{
+margin-top:30px;
+width:100%;
+border-collapse:collapse;
+}
+
+td,th{
+border:1px solid #444;
+padding:8px;
+}
