@@ -69,6 +69,7 @@ cursor:pointer;
 color:white;
 margin-top:10px;
 transition:0.3s;
+grid-column:1 / -1;
 }
 
 .fullbtn:hover{
