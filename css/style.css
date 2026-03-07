@@ -27,14 +27,14 @@ margin-bottom:25px;
 padding:10px 20px;
 border:none;
 border-radius:8px;
-background:#333;
+background:##1F7F82;
 color:white;
 cursor:pointer;
 transition:0.3s;
 }
 
 #darkModeBtn:hover{
-background:#111;
+background:#167A7F;
 }
 
 label{
@@ -73,7 +73,6 @@ transition:0.3s;
 
 .fullbtn:hover{
 background:#167A7F;
-transform:scale(1.02);
 }
 
 table{
