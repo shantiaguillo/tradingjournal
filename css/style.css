@@ -1,6 +1,6 @@
 body{
 font-family:Arial;
-background:white;
+background:#f5f7f8;
 padding:30px;
 transition:0.3s;
 }
@@ -11,7 +11,7 @@ margin:auto;
 background:white;
 padding:40px;
 border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.15);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 h1,h2{
@@ -21,6 +21,20 @@ text-align:center;
 .theme-btn{
 text-align:center;
 margin-bottom:25px;
+}
+
+#darkModeBtn{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#333;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+#darkModeBtn:hover{
+background:#111;
 }
 
 label{
@@ -54,10 +68,12 @@ font-weight:bold;
 cursor:pointer;
 color:white;
 margin-top:10px;
+transition:0.3s;
 }
 
 .fullbtn:hover{
 background:#167A7F;
+transform:scale(1.02);
 }
 
 table{
@@ -78,8 +94,6 @@ text-align:center;
 border-bottom:1px solid #ddd;
 }
 
-/* RESULTADO COLORES SOLO TEXTO */
-
 .win{
 color:#2ecc71;
 font-weight:bold;
@@ -95,8 +109,6 @@ color:#f1c40f;
 font-weight:bold;
 }
 
-/* BOTONES ACCION */
-
 .action-btn{
 padding:6px 10px;
 border:none;
@@ -104,6 +116,7 @@ border-radius:5px;
 cursor:pointer;
 margin:2px;
 font-size:13px;
+transition:0.3s;
 }
 
 .edit-btn{
@@ -111,9 +124,17 @@ background:#3498db;
 color:white;
 }
 
+.edit-btn:hover{
+background:#2980b9;
+}
+
 .delete-btn{
 background:#e74c3c;
 color:white;
+}
+
+.delete-btn:hover{
+background:#c0392b;
 }
 
 /* DARK MODE */
@@ -127,6 +148,17 @@ color:white;
 background:#1b1b1b;
 }
 
+.dark-mode input,
+.dark-mode select{
+background:#222;
+color:white;
+border:1px solid #555;
+}
+
 .dark-mode td{
 border-color:#333;
+}
+
+.dark-mode th{
+background:#333;
 }
