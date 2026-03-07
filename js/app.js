@@ -153,6 +153,11 @@ darkBtn.textContent="☀️ Clear Mode"
 
 pdfBtn.onclick=()=>{
 
+if(trades.length===0){
+alert("No hay trades registrados para descargar.")
+return
+}
+
 const {jsPDF}=window.jspdf
 const doc=new jsPDF()
 
@@ -177,6 +182,6 @@ body:rows,
 startY:20
 })
 
-doc.save("trades.pdf")
+doc.save("historial_trades.pdf")
 
 }
